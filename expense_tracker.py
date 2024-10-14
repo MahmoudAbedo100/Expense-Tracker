@@ -96,6 +96,33 @@ class ExpenseTracker:
         # Redraw the pie chart
         self.canvas.draw()
 
+
+def login():
+    login_window = tk.Toplevel()
+    login_window.title("Login")
+    
+    tk.Label(login_window, text="Username").pack()
+    username_entry = tk.Entry(login_window)
+    username_entry.pack()
+
+    tk.Label(login_window, text="Password").pack()
+    password_entry = tk.Entry(login_window, show="*")
+    password_entry.pack()
+
+    def check_credentials():
+        username = username_entry.get()
+        password = password_entry.get()
+        
+        # Hardcoded credentials for demonstration purposes
+        if username == "admin" and password == "password123":
+            login_window.destroy()  # Close the login window
+            app = ExpenseTracker(window)  # Start the main app
+        else:
+            messagebox.showerror("Error", "Invalid credentials, please try again.")
+
+    tk.Button(login_window, text="Login", command=check_credentials).pack()
+
+
 if __name__ == "__main__":
     window = tk.Tk()
     app = ExpenseTracker(window)
